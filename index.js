@@ -1,7 +1,13 @@
-const http = require('http');
-const hostname = '0.0.0.0'; 
+const express = require('express');
+const produtoRoutes = require('./Routes/produtos.routes');
+
+const app = express();
+const hostname = '0.0.0.0';
 const port = 3000;
 
-http.createServer((req, res) => res.end('Ok')).listen(port, hostname, () => {
+app.use(express.json());
+app.use('/produtos', produtoRoutes);
+
+app.listen(port, hostname, () => {
     console.log(`Servidor rodando na porta ${port}`);
 });
